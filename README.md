@@ -5,6 +5,7 @@ Features:
 * Per-default HTML escaping to prevent XSRF and similar attacks. 
 * No need for {literal} in 99% of cases. Anything inside curly braces is checked for template syntax and printed unchanged if it doesn't match, to prevent it escape the openeing curly brace. E.g.\{$bla} is not being parsed
 * The use of <?php ?> - Tags is possible but discouraged
+* Recompiles templates only when the compiled file does not exists or the template file has changed
 
 **Available Commands**
 * Print variables via {$variablename}, access unescaped data via {$variablenameraw}
