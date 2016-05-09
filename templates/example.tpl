@@ -62,5 +62,19 @@
 		{$quantity}
 	</p>
 	
+	<p>
+		Javascript example<br>
+		<span id="javascript"></span>
+		<script type="text/javascript">
+			function fillContent() {
+				document.getElementById("javascript").innerHTML = 
+					"You can place inline javascript code without needing to escape curly braces 99% of the time. " +
+					"In the remaining cases, place a back slash at the begining of a curly brace. Like so: \{test}";
+			}
+			
+			fillContent();
+		</script>
+	</p>
+	
 </body>
 </html>
