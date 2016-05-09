@@ -103,31 +103,37 @@ class View {
 		if (!preg_match("/\.tpl$/", $viewfilename)) {
 			$viewfilename.= ".tpl";
 		}
+		
 		$this->viewfilename = $viewfilename;
 		
-		foreach ($this->data as $name => $value) {
-			$$name = $value;
-		}
-				
-		$str = file_get_contents($this->templatedir. $viewfilename);
-		
-		$str = $this->parseTemplate($str);
-		
-		
-		if (!is_dir($this->compiledir)) {
-			mkdir($this->compiledir);
+		foreach ($this->data as $_varname => $value) {
+			$$_varname = $value;
 		}
 		
-		file_put_contents($this->compiledir . $viewfilename, $str);
+		$rawpath = $this->templatedir. $viewfilename;
+		$compiledpath = $this->compiledir. str_replace(".tpl", ".php", $viewfilename);
+		
+		
+		if (!file_exists($compiledpath) || filemtime($rawpath) >= filemtime($compiledpath)) {
+			$str = file_get_contents($rawpath);
+			
+			$str = $this->parseTemplate($str);
+		
+			if (!is_dir($this->compiledir)) {
+				mkdir($this->compiledir);
+			}
+			
+			file_put_contents($compiledpath, $str);
+		}
 
 		if ($fetch) {
 			ob_start();
-			include($this->compiledir . $viewfilename);
+			include($compiledpath);
 			$str = ob_get_contents();
 			ob_end_clean();
 			return $str;
 		} else {
-			include($this->compiledir . $viewfilename);
+			include($compiledpath);
 
 		}
 	}
