@@ -15,7 +15,7 @@
  *  - Store HTML output for later printing via
  *	      {capture name="header"}sadf lsadkfjsladkfj slkdf{/capture}   and then {$header}
  *
- *  - Include files via {include file="filename"}    - with .tpl!
+ *  - Include files via {include file="filename"}
  *
  *  - It's also possible to include files and assign variables in one command:
  *		{include file="filename" foo="bar" test=$var}
