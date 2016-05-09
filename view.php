@@ -1,6 +1,4 @@
 <?php
-
-
 /* Tiny Template Engine
  *
  * - Assign view data via assign()
@@ -34,27 +32,23 @@ class View {
 	private $data = array();
 	private $templatedir = "";
 	private $compiledir = "";
-	
 	private $viewfilename;
 	
 	function __construct($basepath = ".") {
-	
 		$this->templatedir = $basepath . "/templates/";
 		$this->compiledir = $basepath . "/templates_c/";
 	}
-	
 
 	function setTemplatesDirectory($dir) {
 		$this->templatedir= $dir;
 	}
+	
 	function getTemplatesDirectory() {
 		return $this->templatedir;
 	}
 	
 	function assign($name, $value, $defaultvalue = null, $unfiltered = false) {
 		if (empty($value)) $value = $defaultvalue;
-		
-		// Data is filtered by default, access to raw data via [variablename]raw
 		
 		if ($unfiltered ) {
 			$this->data[$name] = $value;
@@ -137,7 +131,6 @@ class View {
 
 		}
 	}
-	
 	
 	
     function parseTemplate($content) {
